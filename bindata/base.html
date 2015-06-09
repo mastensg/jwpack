@@ -35,7 +35,8 @@
     body.error      #pack { display: none; }
 
     #packlink { display: none; }
-    body.success #packlink { display: inline-block; background: #fff url("/s/file_1x.png"); margin: 1em auto; border: 25px solid #fff; border-radius: 25px; height: 77px; width: 60px; }
+    body.success #packlink { display: inline-block; transition: 0.6s ease; background: url("/s/file_1x.png"); margin: 1em auto; border: 25px solid #eee; border-radius: 25px; height: 77px; width: 60px; }
+    body.success #packlink:hover { background-color: #fff; border-color: #fff; }
 
     body.initial    #clickable { display: inline-block; }
     body.uploading  #clickable { display: none; }
