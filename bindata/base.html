@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{template "title" .}}</title>
+<link rel="shortcut icon" href="/s/favicon.png" type="image/png" />
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    html, body { margin: 0; padding: 0; }
+    html, body { position: absolute; top: 0; height: 100%; width: 100%; }
+    body { background: #eee; color: #333; font-family: sans-serif; }
+
+    h1 {  margin: 1.5em auto; width: 285px; height: 55px; }
+    h1 a { display: block; background: url("/s/logo_1x.png"); height: 100%; width: 100%; }
+
+    article { margin: 2em auto; width: 50em; text-align: center; }
+    article p { margin-bottom: 1.5em; }
+
+    body.initial    #error { display: none; }
+    body.uploading  #error { display: none; }
+    body.uploaded   #error { display: none; }
+    body.success    #error { display: none; }
+    body.error      #error { display: inline-block; background: #f2dede; color: #a94442; border: 1px solid #ebccd1; border-radius: 4px; padding: 1em; width: 100%; }
+
+    body.initial    #message::before { content: "Drop a Zip file with your skin XML and image files anywhere inside this page, or click on the button below."; }
+    body.uploading  #message::before { content: "Uploading..."; }
+    body.uploaded   #message::before { content: "Processing..."; }
+    body.success    #message::before { content: "Your skin has been packed. You may pick it up below."; }
+    body.error      #message::before { content: "Drop a Zip file with your skin XML and image files anywhere inside this page, or click on the button below."; }
+
+    body.initial    #pack { display: none; }
+    body.uploading  #pack { display: none; }
+    body.uploaded   #pack { display: none; }
+    body.success    #pack { text-align: center; }
+    body.error      #pack { display: none; }
+
+    #packlink { display: none; }
+    body.success #packlink { display: inline-block; background: #fff url("/s/file_1x.png"); margin: 1em auto; border: 25px solid #fff; border-radius: 25px; height: 77px; width: 60px; }
+
+    body.initial    #clickable { display: inline-block; }
+    body.uploading  #clickable { display: none; }
+    body.uploaded   #clickable { display: none; }
+    body.success    #clickable { display: none; }
+    body.error      #clickable { display: inline-block; }
+
+    @keyframes move {
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: 30px 30px;
+        }
+    }
+
+    .dz-preview { background: #ffc7d6; margin: 0 auto; width: 55%; }
+
+    .dz-progress { display: block; background: #f1c3d0; width: 100%; }
+
+    .dz-upload { display: block; background: #ff0046; height: 4px }
+    body.uploaded .dz-upload {
+        background-image: linear-gradient(
+            -45deg, 
+            #ffc7d6 25%, 
+            transparent 25%, 
+            transparent 50%, 
+            #ffc7d6 50%, 
+            #ffc7d6 75%, 
+            transparent 75%, 
+            transparent
+            );
+        background-size: 30px 30px;
+        animation: move 0.5s linear infinite;
+    }
+    body.error .dz-upload {
+        display: none;
+    }
+
+    body.error .dz-error-message { padding: 1em; text-align: center; }
+
+    footer { position: absolute; bottom: 2.5em; color: #888; font-size: 0.85em; text-align: center; width: 100%; }
+    footer > span { margin: 0 3em; }
+    footer a { color: #3c9; text-decoration: none; }
+</style>
+{{template "head" .}}
+</head>
+<body>
+<h1><a href="/"></a></h1>
+{{template "body" .}}
+<footer>
+    <span>&copy; 2015 Martin &amp; Kasper</span>
+    <span>Hosted by <a href="https://www.synq.fm/">SYNQ</a> with <span style="color: #ff0046">❤️‍</span></span>
+    <span>Check us out on <a href="https://github.com/mastensg/jwpack">GitHub</a></span>
+</footer>
+</body>
+</html>

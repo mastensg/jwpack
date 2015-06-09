@@ -1,0 +1,68 @@
+{{define "title"}}JWPACK.it{{end}}
+
+{{define "head"}}
+{{end}}
+
+{{define "body"}}
+<div id="state" class="waiting">
+    <article>
+        <p id="error"></p>
+        <p id="message"></p>
+        <p id="pack"><a id="packlink" href=""></a></p>
+        <button id="clickable">Choose File</button>
+    </article>
+
+    <div id="preview-template" style="display: none;">
+        <div class="dz-preview dz-file-preview">
+            <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+        </div>
+    </div>
+</div>
+
+<div id="previews" class="dropzone-previews"></div>
+
+<script src="/s/dropzone.js"></script>
+<script>
+drop = new Dropzone(document.body, {
+    acceptedFiles: "application/zip",
+    previewTemplate: document.querySelector('#preview-template').innerHTML,
+    clickable: "#clickable",
+    maxFiles: 1,
+    maxFilesize: 8192,
+    previewsContainer: "#previews",
+    url: "/new",
+});
+
+drop.on("addedfile", function(file) {
+    document.body.className = "uploading";
+});
+
+drop.on("uploadprogress", function(file, progress) {
+    if (progress < 100)
+        return;
+
+    document.body.className = "uploaded";
+});
+
+drop.on("success", function(file, response) {
+    document.body.className = "success";
+
+    drop.removeAllFiles(true);
+
+    e = document.getElementById('packlink');
+    e.href = response;
+});
+
+drop.on("error", function(file, response) {
+    document.body.className = "error";
+
+    drop.removeAllFiles(true);
+
+    e = document.getElementById('error');
+    e.innerHTML = response;
+});
+
+document.body.className = "initial";
+
+</script>
+{{end}}
